@@ -1,0 +1,22 @@
+name: Mon premier pipeline
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Afficher un message
+        run: echo "Le pipeline fonctionne !"
+
+      - name: Verifier la  presence du README
+        run: |
+          if [ -f README.md ]; then
+             echo "README trouve"
+          else
+             echo "README manquant"
+             exit 1
+          fi
